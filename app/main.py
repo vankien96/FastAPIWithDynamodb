@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .configs.env_config import get_settings
 from .configs.error_handler import add_exception_handler
 from .routers import auth, user
-from .bin.create_database import create_tables
+from .helpers.create_database import create_tables
 
 app = FastAPI()
 

@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
+from typing import Optional
 
 class AppSetting(BaseSettings):
     access_token_life_time: int
@@ -8,9 +9,10 @@ class AppSetting(BaseSettings):
     refresh_token_length: int
     token_algo: str
     app_name: str
-    aws_access_key: str
-    aws_secret_key: str
+    aws_access_key_id: str
+    aws_secret_access_key: str
     aws_region: str
+    dynamo_endpoint: Optional[str]
 
     model_config = SettingsConfigDict(env_file=".env")
 

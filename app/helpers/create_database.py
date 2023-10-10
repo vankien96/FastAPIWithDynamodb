@@ -21,7 +21,6 @@ def create_user_table():
             'WriteCapacityUnits': 10
         }
     )
-    table.wait_until_exists()
 
 def create_token_table():
     dynamodb = connect_database()
@@ -44,8 +43,6 @@ def create_token_table():
             'WriteCapacityUnits': 10
         }
     )
-    table.wait_until_exists()
-    
 
 def create_tables():
     create_token_table()

@@ -1,0 +1,34 @@
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - dynamodb-local
+    env_file:
+      - .env
+  dynamodb-admin:
+    build:
+      context: .
+      dockerfile: dynamodb-admin.Dockerfile
+    ports:
+      - 8001:8001
+    depends_on:
+      - dynamodb-local
+    env_file:
+      - .env
+  dynamodb-local:
+    image: amazon/dynamodb-local
+    volumes:
+     - dynamodb_data:/home/dynamodblocal/data
+    ports:
+     - "8000:8000"
+    working_dir: /home/dynamodblocal
+    user: root
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath ./data
+
+volumes:
+  dynamodb_data:

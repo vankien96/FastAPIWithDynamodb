@@ -5,9 +5,11 @@ from .env_config import get_settings
 def connect_database():
     settings = get_settings()
     db = boto3.resource('dynamodb',
+                        endpoint_url=settings.dynamo_endpoint,
                         region_name=settings.aws_region,
-                        aws_access_key_id=settings.aws_access_key,
-                        aws_secret_access_key=settings.aws_secret_key)
+                        aws_access_key_id=settings.aws_access_key_id,
+                        aws_secret_access_key=settings.aws_secret_access_key,
+                        )
     return db
 
 def get_table(name: str):
